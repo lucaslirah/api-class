@@ -1,0 +1,19 @@
+{
+  "name": "api-class",
+  "version": "1.0.0",
+  "description": "API developed in Explorer, a Rocketseat's program.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucaslirah/api-class.git"
+  },
+  "author": "Lucas Lira da Silva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lucaslirah/api-class/issues"
+  },
+  "homepage": "https://github.com/lucaslirah/api-class#readme"
+}
