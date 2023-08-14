@@ -10,7 +10,7 @@
 //     async create(request, response){
 //         const { name, email, password } = request.body;
 
-//         response.status(201).json({ name, email, password });
+//         response.status(201).json({ name, email, password }); //status code is not required, must be used following the standard.
 //     }    
 
 // }
