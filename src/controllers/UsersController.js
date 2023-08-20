@@ -32,7 +32,7 @@ class UsersController {
             throw new AppError("The email is already in use!");
         };
 
-        database.run("INSERT INTO users (name, email, password) VALUES ( ?, ?, ? )", [ name, email, password]);
+        database.run("INSERT INTO users ( name, email, password ) VALUES ( ?, ?, ? )", [ name, email, password ]);
 
         return response.status(201).json();
     };
