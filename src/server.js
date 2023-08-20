@@ -10,10 +10,12 @@
 // app.listen(PORT, () => console.log(`Server is running on Port ${PORT}`));
 // require('express-async-errors')
 require("express-async-errors");
+const migrationsRun = require("./database/sqlite/migrations")
 const AppError = require("../src/utils/AppError")
 const express = require('express');
 const routes = require("./routes/index.js"); //by default JS uses index.js file, so is not necessary put it.
-const database = require("../src/database/sqlite");
+
+migrationsRun();
 
 const app = express();
 
@@ -36,8 +38,6 @@ app.use( (error, request, response, next) => {
     });
 
 });
-
-database();
 
 const PORT = 3333;
 app.listen(PORT, () => console.log(`Server is running on PORT ${PORT}`));
