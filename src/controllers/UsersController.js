@@ -17,17 +17,22 @@
 
 // module.exports = UserController;
 const AppError = require("../utils/AppError");
+const sqliteConnection = require("../database/sqlite");
 
 class UsersController {
 
-    create( request, response ){
+    async create( request, response ){
         const { name, email, password } = request.body;
+        
+        const database = await sqliteConnection();
 
-        if(!name){
-            throw new AppError("Name is required!");
+        const checkIfUserExists = await database.get('SELECT email FROM users WHERE email = (?)', [email]);
+
+        if(checkIfUserExists){
+            throw new AppError("The email is already in use!");
         };
 
-        response.json({ name, email, password });
+        return response.status(201).json();
     };
 };
 
