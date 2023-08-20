@@ -23,14 +23,16 @@ class UsersController {
 
     async create( request, response ){
         const { name, email, password } = request.body;
-        
+
         const database = await sqliteConnection();
 
-        const checkIfUserExists = await database.get('SELECT email FROM users WHERE email = (?)', [email]);
+        const checkIfUserExists = await database.get("SELECT email FROM users WHERE email = (?)", [email]);
 
         if(checkIfUserExists){
             throw new AppError("The email is already in use!");
         };
+
+        database.run("INSERT INTO users (name, email, password) VALUES ( ?, ?, ? )", [ name, email, password]);
 
         return response.status(201).json();
     };
