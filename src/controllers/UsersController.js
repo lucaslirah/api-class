@@ -68,7 +68,6 @@ class UsersController {
             throw new AppError("You need to enter the old password to set the new password.");
         };
 
-        
         if(password && old_password){
             const checkOldPassword = await compare(old_password, user.password);
 
