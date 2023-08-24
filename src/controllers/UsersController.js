@@ -64,6 +64,21 @@ class UsersController {
         user.name = name ?? user.name;
         user.email = email ?? user.email;
 
+        if(password && !old_password){
+            throw new AppError("You need to enter the old password to set the new password.");
+        };
+
+
+        if(password && old_password){
+            const checkOldPassword = await compare(old_password, user.password);
+
+            if(!checkOldPassword){
+                throw new AppError("The old password does not match.");
+            };
+
+            user.password = await hash (password, 8);
+        };
+
         await database.run(`
             UPDATE users SET
                 name = ?,
