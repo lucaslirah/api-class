@@ -8,7 +8,7 @@ class SessionsController{
         const user = await knex("users").where({email}).first();
 
         if(!user){
-            throw new Error("Incorrect email and/or password.", 401)
+            throw new AppError("Incorrect email and/or password.", 401)
         }
 
         return response.json(user);
