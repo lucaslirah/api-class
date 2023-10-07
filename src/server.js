@@ -14,10 +14,13 @@ const migrationsRun = require("./database/sqlite/migrations")
 const AppError = require("../src/utils/AppError")
 const express = require('express');
 const routes = require("./routes/index.js"); //by default JS uses index.js file, so is not necessary put it.
+const uploadConfig = require("./configs/upload");
 
 migrationsRun();
 
 const app = express();
+
+app.use("/files", express.static(uploadConfig.UPLOADS_FOLDER));
 
 app.use(express.json());
 app.use(routes);
