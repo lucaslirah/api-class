@@ -39,6 +39,7 @@ class UsersController {
 
         return response.status(201).json();
     };
+
     async update( request, response ){
         const { name, email, password, old_password } = request.body;
         const user_id = request.user.id;
@@ -57,9 +58,10 @@ class UsersController {
             throw new AppError("This email is already in use!");
         };
 
-        if(user.name === name && user.email === email){
-            throw new AppError("Data already registered!");
-        };//In case the user tries to insert the same data that is registered there was no error returned, I inserted this code to compare with the final code later.
+        // if(user.name === name && user.email === email){
+        //     throw new AppError("Data already registered!");
+        // };
+        //In case the user tries to insert the same data that is registered there was no error returned, I inserted this code to compare with the final code later.
 
         user.name = name ?? user.name;
         user.email = email ?? user.email;
